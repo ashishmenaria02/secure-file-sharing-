@@ -48,4 +48,24 @@ def send_file(filename, ip='127.0.0.1'):
             s.send(encrypt(data))
 
     print("✅ File sent successfully.")
-    s.close()
+    s.close() 
+
+
+# MENU-BASED ENTRY POINT
+if __name__ == "__main__":
+    print("🔐 Secure File Sharing")
+    print("1. Run as Server (Receiver)")
+    print("2. Run as Client (Sender)")
+
+    choice = input("Enter your choice (1/2): ").strip()
+
+    if choice == '1':
+        start_server()
+    elif choice == '2':
+        filename = input("Enter filename to send (e.g., test.txt): ")
+        ip = input("Enter receiver IP (default 127.0.0.1): ").strip()
+        if not ip:
+            ip = "127.0.0.1"
+        send_file(filename, ip)
+    else:
+        print("❌ Invalid choice. Exiting.")
